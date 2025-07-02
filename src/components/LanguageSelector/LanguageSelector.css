@@ -1,0 +1,155 @@
+/* ===== Selector de idioma flotante ===== */
+.lang-switcher {
+  position: fixed;
+  bottom: 6.5rem;
+  left: 2rem;
+  z-index: 5001;
+}
+
+.lang-btn {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  pointer-events: auto;
+}
+
+.lang-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* CSS para current-lang-text eliminado - ya no se usa */
+
+.lang-menu {
+  position: absolute;
+  left: 0;
+  bottom: 4.5rem;
+  z-index: 5002;
+  min-width: 12rem;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1.2rem;
+  white-space: nowrap;
+}
+
+.lang-option {
+  background: none;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin: 0 0.2rem;
+}
+
+.lang-option:hover,
+.lang-option:focus {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lang-option.active {
+  background: rgba(255, 255, 255, 0.35);
+  color: white;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 0 12px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* ===== DARK MODE para selector de idioma ===== */
+body.dark-mode .lang-btn {
+  background: rgba(45, 55, 72, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .lang-btn:hover {
+  background: rgba(45, 55, 72, 0.5);
+}
+
+body.dark-mode .lang-menu {
+  background: rgba(45, 55, 72, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .lang-option:hover,
+body.dark-mode .lang-option:focus {
+  background: rgba(45, 55, 72, 0.5);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .lang-option.active {
+  background: rgba(96, 165, 250, 0.25);
+  color: rgb(147, 197, 253);
+  font-weight: 600;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  box-shadow: 
+    0 0 12px rgba(96, 165, 250, 0.2),
+    inset 0 1px 0 rgba(96, 165, 250, 0.1);
+  transform: translateY(-1px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 767px) {
+  .lang-switcher {
+    bottom: 5rem !important;
+    left: 1.5rem !important;
+  }
+  
+  .lang-btn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.4rem;
+  }
+  
+  .lang-menu {
+    bottom: 3.5rem !important;
+    min-width: 10rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  .lang-option {
+    font-size: 1.1rem;
+    padding: 0.3rem 0.6rem;
+  }
+} 

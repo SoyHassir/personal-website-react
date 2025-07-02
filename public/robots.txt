@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hassirlastre.com/sitemap.xml
+
+# Crawl-delay (opcional - ajustar según necesidades)
+Crawl-delay: 1
+
+# Disallow archivos innecesarios
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /*.json
+Disallow: /*.js.map
+Disallow: /vite.config.js 
