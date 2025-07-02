@@ -104,8 +104,7 @@ const Home = () => {
       <div className='hero-content'>
         <div className='hero-text'>
           <h1 id="hero-heading">
-            {t('home-greeting')} 
-            <span 
+            {t('home-greeting')}<span 
               className='typed' 
               ref={typedElement}
               aria-live="polite"

@@ -29,7 +29,7 @@ export const TRANSLATIONS = {
     "aria-service-card": "Información sobre el servicio de",
     
     // Home
-    "home-greeting": "Hola, soy",
+    "home-greeting": "Hola, soy ",
     "home-typed-1": "Hassir Lastre Sierra",
     "home-typed-2": "Consultor Estratégico",
     "home-typed-3": "Analista de Datos",
@@ -107,7 +107,7 @@ export const TRANSLATIONS = {
     "aria-service-card": "Information about service for",
     
     // Home
-    "home-greeting": "Hi, I'm",
+    "home-greeting": "Hi, I'm ",
     "home-typed-1": "Hassir Lastre Sierra",
     "home-typed-2": "Strategic Consultant",
     "home-typed-3": "Data Analyst", 
