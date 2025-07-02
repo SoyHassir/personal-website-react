@@ -5,6 +5,28 @@ export const TRANSLATIONS = {
     "nav-about": "Sobre mí", 
     "nav-services": "Servicios",
     "nav-contact": "Contacto",
+    "nav-menu-open": "Abrir menú",
+    "nav-menu-close": "Cerrar menú",
+    
+    // Skip Navigation
+    "skip-nav-main": "Saltar al contenido principal",
+    "skip-nav-navigation": "Saltar a la navegación",
+    "skip-nav-about": "Saltar a Sobre mí",
+    "skip-nav-services": "Saltar a Servicios",
+    "skip-nav-contact": "Saltar a Contacto",
+    
+    // ARIA Labels
+    "aria-back-to-top": "Volver al inicio de la página",
+    "aria-language-selector": "Seleccionar idioma",
+    "aria-current-language": "Idioma actual",
+    "aria-theme-toggle-dark": "Cambiar a modo claro",
+    "aria-theme-toggle-light": "Cambiar a modo oscuro",
+    "aria-loading": "Cargando contenido",
+    "aria-scroll-indicator": "Ir a la siguiente sección",
+    "aria-social-link": "Enlace a perfil de",
+    "aria-form-success": "Mensaje enviado exitosamente",
+    "aria-form-error": "Error al enviar el formulario",
+    "aria-service-card": "Información sobre el servicio de",
     
     // Home
     "home-greeting": "Hola, soy",
@@ -61,6 +83,28 @@ export const TRANSLATIONS = {
     "nav-about": "About",
     "nav-services": "Services", 
     "nav-contact": "Contact",
+    "nav-menu-open": "Open menu",
+    "nav-menu-close": "Close menu",
+    
+    // Skip Navigation
+    "skip-nav-main": "Skip to main content",
+    "skip-nav-navigation": "Skip to navigation",
+    "skip-nav-about": "Skip to About",
+    "skip-nav-services": "Skip to Services",
+    "skip-nav-contact": "Skip to Contact",
+    
+    // ARIA Labels
+    "aria-back-to-top": "Go back to top of page",
+    "aria-language-selector": "Select language",
+    "aria-current-language": "Current language",
+    "aria-theme-toggle-dark": "Switch to light mode",
+    "aria-theme-toggle-light": "Switch to dark mode",
+    "aria-loading": "Loading content",
+    "aria-scroll-indicator": "Go to next section",
+    "aria-social-link": "Link to profile on",
+    "aria-form-success": "Message sent successfully",
+    "aria-form-error": "Error sending form",
+    "aria-service-card": "Information about service for",
     
     // Home
     "home-greeting": "Hi, I'm",

@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import { useLanguage } from '../../i18n/LanguageContext.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './LanguageSelector.css';
 
-const LanguageSelector = () => {
-  const { currentLanguage, changeLanguage } = useLanguage();
+const LanguageSelector = memo(() => {
+  const { currentLanguage, changeLanguage, t } = useLanguage();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
-  const toggleLangMenu = () => {
-    setIsLangMenuOpen(!isLangMenuOpen);
-  };
+  const toggleLangMenu = useCallback(() => {
+    setIsLangMenuOpen(prev => !prev);
+  }, []);
 
-  const selectLanguage = (lang) => {
+  const selectLanguage = useCallback((lang) => {
     changeLanguage(lang);
     setIsLangMenuOpen(false);
-  };
+  }, [changeLanguage]);
 
 
 
@@ -21,26 +22,37 @@ const LanguageSelector = () => {
     <div className="lang-switcher">
       <button 
         className="lang-btn" 
-        aria-haspopup="true" 
+        aria-haspopup="menu" 
         aria-expanded={isLangMenuOpen} 
-        aria-label="Seleccionar idioma"
+        aria-label={t('aria-language-selector')}
+        aria-describedby="current-language"
         onClick={toggleLangMenu}
       >
-        <i className="fas fa-globe"></i>
+        <FontAwesomeIcon icon={['fas', 'globe']} aria-hidden="true" />
+        <span className="sr-only" id="current-language">
+          {t('aria-current-language')}: {currentLanguage === 'es' ? 'Español' : 'English'}
+        </span>
       </button>
       <div 
         className="lang-menu" 
+        role="menu"
+        aria-label={t('aria-language-selector')}
         style={{ display: isLangMenuOpen ? 'flex' : 'none' }}
+        aria-hidden={!isLangMenuOpen}
       >
         <button 
           className={`lang-option ${currentLanguage === 'es' ? 'active' : ''}`} 
+          role="menuitem"
+          aria-current={currentLanguage === 'es' ? 'true' : 'false'}
           onClick={() => selectLanguage('es')}
         >
           Español
         </button>
-        <span className="lang-divider">|</span>
+        <span className="lang-divider" aria-hidden="true">|</span>
         <button 
           className={`lang-option ${currentLanguage === 'en' ? 'active' : ''}`} 
+          role="menuitem"
+          aria-current={currentLanguage === 'en' ? 'true' : 'false'}
           onClick={() => selectLanguage('en')}
         >
           English
@@ -48,6 +60,9 @@ const LanguageSelector = () => {
       </div>
     </div>
   );
-};
+});
+
+// Nombre para DevTools
+LanguageSelector.displayName = 'LanguageSelector';
 
 export default LanguageSelector; 

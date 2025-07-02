@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { TRANSLATIONS } from './translations.js';
 
 const LanguageContext = createContext();
@@ -18,13 +18,13 @@ export const LanguageProvider = ({ children }) => {
     return TRANSLATIONS[browserLang] ? browserLang : 'es';
   });
 
-  // Función para traducir usando una clave
-  const t = (key) => {
+  // Función para traducir usando una clave - memoizada
+  const t = useCallback((key) => {
     return TRANSLATIONS[currentLanguage]?.[key] || key;
-  };
+  }, [currentLanguage]);
 
-  // Función para cambiar idioma
-  const changeLanguage = (lang) => {
+  // Función para cambiar idioma - memoizada
+  const changeLanguage = useCallback((lang) => {
     if (TRANSLATIONS[lang]) {
       setCurrentLanguage(lang);
       // Guardar en localStorage para persistencia
@@ -32,7 +32,7 @@ export const LanguageProvider = ({ children }) => {
       // Actualizar atributo lang del documento
       document.documentElement.setAttribute('lang', lang);
     }
-  };
+  }, []);
 
   // Cargar idioma guardado al inicializar
   useEffect(() => {
@@ -43,12 +43,16 @@ export const LanguageProvider = ({ children }) => {
     document.documentElement.setAttribute('lang', currentLanguage);
   }, [currentLanguage]);
 
-  const value = {
+  // Memoizar idiomas disponibles (no cambian)
+  const availableLanguages = useMemo(() => Object.keys(TRANSLATIONS), []);
+
+  // Memoizar el objeto value del contexto
+  const value = useMemo(() => ({
     currentLanguage,
     changeLanguage,
     t,
-    availableLanguages: Object.keys(TRANSLATIONS)
-  };
+    availableLanguages
+  }), [currentLanguage, changeLanguage, t, availableLanguages]);
 
   return (
     <LanguageContext.Provider value={value}>

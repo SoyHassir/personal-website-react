@@ -1,0 +1,86 @@
+/* 
+ * Font Awesome Base Styles for Tree Shaking
+ * Estilos mínimos necesarios para FontAwesome SVG icons
+ */
+
+/* Base styles for FontAwesome SVG icons */
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+/* Tamaños específicos para diferentes contextos */
+
+/* Iconos en botones flotantes */
+.theme-toggle svg,
+.lang-btn svg,
+.back-to-top svg,
+.open-menu svg,
+.close-menu svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1.2rem;
+}
+
+/* Iconos en tarjetas de servicios - coordinado con Services.css */
+.service-icon svg {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  font-size: 2.5rem;
+}
+
+/* Iconos en redes sociales - ya están definidos en Contact.css */
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+/* Responsive para iconos de servicios - coordinado con Services.css */
+@media (max-width: 768px) {
+  .service-icon svg {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    font-size: 2.2rem;
+  }
+}
+
+/* Responsive para redes sociales - ya definido en Contact.css */
+@media (max-width: 1024px) {
+  .social-icon svg {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icon svg {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Iconos en formularios y otros contextos */
+.loading-spinner svg,
+.message-icon svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* Fix para animaciones de Font Awesome */
+svg.fa-spin {
+  animation: fa-spin 2s infinite linear;
+}
+
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

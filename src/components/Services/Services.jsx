@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo, memo } from 'react';
 import { useLanguage } from '../../i18n/LanguageContext.jsx';
+import ServiceCard from './ServiceCard.jsx';
 import './Services.css'; // Importa sus propios estilos modulares
 
-const Services = () => {
+const Services = memo(() => {
   const { t } = useLanguage();
   const sectionRef = useRef(null);
 
@@ -42,38 +43,39 @@ const Services = () => {
     };
   }, []); // El array vacío asegura que este efecto se ejecute solo una vez
 
-  const services = [
+  // Memoizar el array de services para evitar re-renders innecesarios
+  const services = useMemo(() => [
     {
-      icon: "fas fa-chart-line",
+      icon: ['fas', 'chart-line'],
       titleKey: "service1-title",
       descKey: "service1-desc"
     },
     {
-      icon: "fas fa-chalkboard-teacher", 
+      icon: ['fas', 'chalkboard-teacher'], 
       titleKey: "service2-title",
       descKey: "service2-desc"
     },
     {
-      icon: "fas fa-database",
+      icon: ['fas', 'database'],
       titleKey: "service3-title",
       descKey: "service3-desc"
     },
     {
-      icon: "fas fa-flask",
+      icon: ['fas', 'flask'],
       titleKey: "service4-title",
       descKey: "service4-desc"
     },
     {
-      icon: "fas fa-digital-tachograph",
+      icon: ['fas', 'cogs'],
       titleKey: "service5-title",
       descKey: "service5-desc"
     },
     {
-      icon: "fas fa-laptop-code",
+      icon: ['fas', 'laptop-code'],
       titleKey: "service6-title",
       descKey: "service6-desc"
     }
-  ];
+  ], []);
 
   return (
     <section id='servicios' aria-labelledby="services-title" ref={sectionRef}>
@@ -82,19 +84,20 @@ const Services = () => {
         <p className='services-subtitle'>{t('services-subtitle')}</p>
       </div>
       
-      <div className='services-grid'>
+      <div className='services-grid' role="list" aria-label={t('services-subtitle')}>
         {services.map((service, index) => (
-          <div key={index} className='service-card'>
-            <div className='service-icon'>
-              <i className={service.icon}></i>
-            </div>
-            <h3 className='service-title'>{t(service.titleKey)}</h3>
-            <p className='service-description'>{t(service.descKey)}</p>
-          </div>
+          <ServiceCard 
+            key={index} 
+            service={service} 
+            index={index} 
+          />
         ))}
       </div>
     </section>
   );
-};
+});
+
+// Nombre para DevTools
+Services.displayName = 'Services';
 
 export default Services;

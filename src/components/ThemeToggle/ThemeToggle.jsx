@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { memo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useLanguage } from '../../i18n/LanguageContext.jsx';
 
-const ThemeToggle = ({ isDarkMode, toggleDarkMode }) => {
+const ThemeToggle = memo(({ isDarkMode, toggleDarkMode }) => {
+  const { t } = useLanguage();
+  
+  const ariaLabel = isDarkMode ? t('aria-theme-toggle-dark') : t('aria-theme-toggle-light');
+  
   return (
     <button 
       className="theme-toggle" 
       onClick={toggleDarkMode}
-      aria-label={isDarkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-      title={isDarkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+      aria-label={ariaLabel}
+      title={ariaLabel}
+      aria-pressed={isDarkMode}
     >
-      <i className={isDarkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"}></i>
+      <FontAwesomeIcon 
+        icon={['fas', isDarkMode ? 'sun' : 'moon']} 
+        aria-hidden="true"
+      />
     </button>
   );
-};
+});
+
+// Nombre para DevTools
+ThemeToggle.displayName = 'ThemeToggle';
 
 export default ThemeToggle; 

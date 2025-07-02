@@ -182,7 +182,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
   color: rgba(255, 255, 255, 0.9);
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
@@ -194,6 +193,12 @@
   box-shadow: 
     0 8px 25px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.social-link .social-icon svg {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .social-link .social-icon::before {
@@ -504,7 +509,12 @@ body.dark-mode .btn-email:hover {
   .social-link .social-icon {
     width: 40px;
     height: 40px;
-    padding: 10px;
+  }
+  
+  .social-link .social-icon svg {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -574,7 +584,12 @@ body.dark-mode .btn-email:hover {
   .social-link .social-icon {
     width: 40px;
     height: 40px;
-    padding: 10px;
+  }
+  
+  .social-link .social-icon svg {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -640,7 +655,12 @@ body.dark-mode .btn-email:hover {
   .social-link .social-icon {
     width: 32px;
     height: 32px;
-    padding: 8px;
+  }
+  
+  .social-link .social-icon svg {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
   }
 
   .social-link span {

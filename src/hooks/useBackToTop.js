@@ -30,7 +30,6 @@ export const useBackToTop = () => {
     const handleClick = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      console.log('Back to top clicked!'); // Debug
       window.scrollTo({
         top: 0,
         behavior: 'smooth'

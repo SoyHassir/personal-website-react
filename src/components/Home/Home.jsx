@@ -100,18 +100,32 @@ const Home = () => {
   }, []); // El array vacío asegura que esto solo se configure una vez
 
   return (
-    <section className='home' id='inicio'>
+    <section className='home' id='inicio' role="banner" aria-labelledby="hero-heading">
       <div className='hero-content'>
         <div className='hero-text'>
-          <h1>{t('home-greeting')} <span className='typed' ref={typedElement}></span></h1>
-          <p className='hero-description'>
+          <h1 id="hero-heading">
+            {t('home-greeting')} 
+            <span 
+              className='typed' 
+              ref={typedElement}
+              aria-live="polite"
+              aria-atomic="true"
+            ></span>
+          </h1>
+          <p className='hero-description' id="hero-description">
             {t('home-subtitle')}
           </p>
           <div className='hero-buttons'>
-            <a href='#sobre-mi' className='btn btn-outline'>{t('home-cta-button').toUpperCase()}</a>
+            <a 
+              href='#sobre-mi' 
+              className='btn btn-outline'
+              aria-describedby="hero-description"
+            >
+              {t('home-cta-button').toUpperCase()}
+            </a>
           </div>
         </div>
-        <div className='hero-image'>
+        <div className='hero-image' role="img" aria-labelledby="hero-heading">
           <picture>
             <source 
               srcSet='./img/optimized-profile/profile-small.avif 280w, ./img/optimized-profile/profile-medium.avif 350w, ./img/optimized-profile/profile-large.avif 440w' 
@@ -121,14 +135,25 @@ const Home = () => {
               srcSet='./img/optimized-profile/profile-small.webp 280w, ./img/optimized-profile/profile-medium.webp 350w, ./img/optimized-profile/profile-large.webp 440w' 
               sizes="(max-width: 767px) 280px, (max-width: 1199px) 350px, 440px"
               type='image/webp' />
-            <img src='./img/originals/profile-image.webp' alt={t('about-title') + ', ' + t('home-typed-2')} width="350" height="350" loading="eager" fetchPriority="high" />
+            <img 
+              src='./img/originals/profile-image.webp' 
+              alt={`${t('about-title')}, ${t('home-typed-2')} - Foto de perfil profesional`}
+              width="350" 
+              height="350" 
+              loading="eager" 
+              fetchPriority="high" 
+            />
           </picture>
         </div>
       </div>
       
       <div className='scroll-indicator'>
-        <a href='#sobre-mi' aria-label={`${t('nav-about')} section`}>
-          <div className='scroll-arrow'></div>
+        <a 
+          href='#sobre-mi' 
+          aria-label={t('aria-scroll-indicator')}
+          title={t('nav-about')}
+        >
+          <div className='scroll-arrow' aria-hidden="true"></div>
         </a>
       </div>
     </section>

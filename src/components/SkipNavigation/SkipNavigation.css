@@ -1,0 +1,98 @@
+/* Skip Navigation - Accesibilidad */
+.skip-navigation {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: transparent;
+  pointer-events: none;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary, #4dabf7);
+  color: var(--color-white, #ffffff);
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--color-white, #ffffff);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-100%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.skip-link:focus {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+  outline: 3px solid var(--color-accent, #ffd43b);
+  outline-offset: 2px;
+}
+
+.skip-link:hover {
+  background: var(--color-primary-dark, #339af0);
+  transform: translateX(-50%) translateY(0) scale(1.02);
+}
+
+/* Espaciado para múltiples skip links */
+.skip-navigation .skip-link:nth-child(2) {
+  left: calc(50% - 120px);
+}
+
+.skip-navigation .skip-link:nth-child(3) {
+  left: calc(50% - 60px);
+}
+
+.skip-navigation .skip-link:nth-child(4) {
+  left: calc(50% + 60px);
+}
+
+.skip-navigation .skip-link:nth-child(5) {
+  left: calc(50% + 120px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skip-link {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  /* En móviles, mostrar solo el enlace principal centrado */
+  .skip-navigation .skip-link:nth-child(n+2) {
+    display: none;
+  }
+  
+  .skip-navigation .skip-link:first-child {
+    left: 50%;
+  }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .skip-link {
+    background: var(--color-dark-surface, #1a1a1a);
+    color: var(--color-light, #f8f9fa);
+    border-color: var(--color-accent, #ffd43b);
+  }
+  
+  .skip-link:hover {
+    background: var(--color-dark-surface-hover, #2d2d2d);
+  }
+}
+
+/* Para usuarios que prefieren movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+} 

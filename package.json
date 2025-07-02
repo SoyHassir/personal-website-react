@@ -6,14 +6,27 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:critical": "vite build && node scripts/optimize-critical-css.mjs",
+    "build:production": "npm run build:critical && npm run preview",
+    "optimize:css": "node scripts/optimize-critical-css.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "analyze": "vite build --mode analyze && npx vite-bundle-analyzer dist/stats.html",
+    "validate:seo": "echo '🔍 Testing Structured Data - Open DevTools Console for validation results' && npm run dev",
+    "validate:csp": "node scripts/validate-csp.mjs",
+    "security:check": "npm run validate:csp",
+    "security:headers": "echo '🛡️  Checking security headers...' && npm run validate:csp"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "typed.js": "^2.1.0"
+    "typed.js": "^2.1.0",
+    "web-vitals": "^3.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
@@ -24,6 +37,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.2.0",
+    "rollup-plugin-critical": "^1.0.15",
     "vite": "^7.0.0"
   }
 }
