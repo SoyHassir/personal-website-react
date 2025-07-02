@@ -706,3 +706,24 @@ body.dark-mode .open-menu:focus, body.dark-mode .close-menu:focus {
   outline: 3px solid var(--primary-color);
   box-shadow: 0 0 0 4px rgba(110,142,251,0.2);
 }
+
+/* ===== OCULTAR SCROLL BAR SOLO EN MÓVIL ===== */
+@media (max-width: 768px) {
+  /* Para navegadores WebKit (Chrome, Safari móvil) */
+  html::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    background: transparent;
+  }
+  
+  /* Para Firefox móvil */
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  
+  /* Asegurar que el scroll siga funcionando */
+  body, #root {
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  }
+}
