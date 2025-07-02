@@ -13,9 +13,15 @@ export const useLanguage = () => {
 
 export const LanguageProvider = ({ children }) => {
   const [currentLanguage, setCurrentLanguage] = useState(() => {
-    // Detectar idioma del navegador o usar español por defecto
-    const browserLang = navigator.language.slice(0, 2);
-    return TRANSLATIONS[browserLang] ? browserLang : 'es';
+    // 1. Priorizar idioma guardado por el usuario
+    const savedLang = localStorage.getItem('preferred-language');
+    if (savedLang && TRANSLATIONS[savedLang]) {
+      return savedLang;
+    }
+    
+    // 2. Si no hay preferencia guardada, usar ESPAÑOL por defecto
+    // (Independientemente del idioma del navegador)
+    return 'es';
   });
 
   // Función para traducir usando una clave - memoizada
@@ -40,6 +46,7 @@ export const LanguageProvider = ({ children }) => {
     if (savedLang && TRANSLATIONS[savedLang]) {
       setCurrentLanguage(savedLang);
     }
+    // Siempre actualizar el atributo lang del documento
     document.documentElement.setAttribute('lang', currentLanguage);
   }, [currentLanguage]);
 
