@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Typed from 'typed.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLanguage } from '../../i18n/LanguageContext.jsx';
 import './Home.css'; // Asegúrate de importar sus estilos
 
@@ -66,11 +67,18 @@ const Home = () => {
     };
   }, [t, currentLanguage]); // Se ejecuta cuando cambia el idioma
 
-  // ✨ useEffect QUE REPLICA EL EFECTO PARALLAX ✨
+  // ✨ useEffect PARA ALTURA DINÁMICA Y PARALLAX ✨
   useEffect(() => {
     const homeSection = document.querySelector('.home');
     if (!homeSection) return;
 
+    // Función para ajustar altura dinámica (especialmente útil en Samsung, iPhone Pro Max, etc.)
+    const adjustDynamicHeight = () => {
+      const vh = window.innerHeight * 0.01;
+      homeSection.style.setProperty('--real-vh', `${vh}px`);
+    };
+
+    // Efecto parallax
     const handleScroll = () => {
       const scrollY = window.scrollY;
 
@@ -90,12 +98,19 @@ const Home = () => {
       }
     };
 
-    // Añadimos el listener para el scroll
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Ajustar altura inicial
+    adjustDynamicHeight();
 
-    // Limpiamos el listener cuando el componente ya no es visible
+    // Event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', adjustDynamicHeight, { passive: true });
+    window.addEventListener('orientationchange', adjustDynamicHeight, { passive: true });
+
+    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', adjustDynamicHeight);
+      window.removeEventListener('orientationchange', adjustDynamicHeight);
     };
   }, []); // El array vacío asegura que esto solo se configure una vez
 
@@ -146,15 +161,14 @@ const Home = () => {
         </div>
       </div>
       
-      <div className='scroll-indicator'>
-        <a 
-          href='#sobre-mi' 
-          aria-label={t('aria-scroll-indicator')}
-          title={t('nav-about')}
-        >
-          <div className='scroll-arrow' aria-hidden="true"></div>
-        </a>
-      </div>
+      <a 
+        href='#sobre-mi' 
+        className='scroll-down'
+        aria-label={t('aria-scroll-indicator')}
+        title={t('nav-about')}
+      >
+        <FontAwesomeIcon icon={['fas', 'chevron-down']} aria-hidden="true" />
+      </a>
     </section>
   );
 };

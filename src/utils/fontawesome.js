@@ -8,11 +8,13 @@ config.autoAddCss = false;
 // Importar SOLO los iconos que usamos en el proyecto
 import {
   faArrowUp,     // Back to top button
+  faArrowDown,   // Scroll down indicator
   faMoon,        // Theme toggle - dark mode
   faSun,         // Theme toggle - light mode
   faGlobe,       // Language selector
   faBars,        // Mobile menu open
   faTimes,       // Mobile menu close
+  faChevronDown, // Scroll down indicator alternative
   faChartLine,   // Service 1: Consultoría Estratégica
   faChalkboardTeacher, // Service 2: Formación Empresarial  
   faDatabase,    // Service 3: Análisis de Datos
@@ -39,11 +41,13 @@ import {
 library.add(
   // Iconos sólidos
   faArrowUp,
+  faArrowDown,
   faMoon,
   faSun,
   faGlobe,
   faBars,
   faTimes,
+  faChevronDown,
   faChartLine,
   faChalkboardTeacher,
   faDatabase,
@@ -71,11 +75,13 @@ export { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const icons = {
   // UI Controls
   arrowUp: faArrowUp,
+  arrowDown: faArrowDown,
   moon: faMoon,
   sun: faSun,
   globe: faGlobe,
   bars: faBars,
   times: faTimes,
+  chevronDown: faChevronDown,
   envelope: faEnvelope,
   spinner: faSpinner,
   check: faCheck,
