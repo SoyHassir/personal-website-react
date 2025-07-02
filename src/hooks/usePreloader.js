@@ -31,9 +31,9 @@ export const usePreloader = () => {
                            (navigator.connection.effectiveType === 'slow-2g' || 
                             navigator.connection.effectiveType === '2g');
     
-    let minShowTime = 300; // Tiempo base reducido
-    if (isMobile) minShowTime = 400; // Menos tiempo en móvil
-    if (isSlowConnection) minShowTime = 600; // Tiempo moderado en conexiones lentas
+    let minShowTime = 1200; // Tiempo base aumentado para apreciar la animación
+    if (isMobile) minShowTime = 1000; // Tiempo óptimo en móvil
+    if (isSlowConnection) minShowTime = 1500; // Más tiempo en conexiones lentas
     
     const startTime = performance.now();
     
@@ -47,7 +47,7 @@ export const usePreloader = () => {
           setTimeout(() => {
             setIsLoading(false);
             preloader.remove();
-          }, 500);
+          }, 700); // Transición de salida más suave
         }
       }, remainingTime);
     };
