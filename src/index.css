@@ -88,7 +88,13 @@ html {
   scroll-behavior: smooth;
   font-size: 62.5%;
   width: 100%;
+  height: 100%;
   overflow-x: hidden;
+  overflow-y: auto; /* El HTML maneja el scroll principal */
+  /* Optimizaciones para móvil */
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS Safari */
+  overscroll-behavior: contain; /* Evitar scroll elástico - EXCELENTE en Android */
+  scroll-snap-type: none; /* Asegurar scroll libre en ambas plataformas */
 }
 
 body { 
@@ -97,8 +103,11 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-y: visible; /* Permitir que el contenido controle su propio scroll */
   width: 100%;
   max-width: 100%;
+  min-height: 100vh; 
+  min-height: 100dvh; /* Mejor soporte para móvil - Dynamic Viewport Height */
   /* Fondo global único y continuo - primary/secondary con auxiliares armónicos */
   background: linear-gradient(135deg, 
     #6e8efb 0%,        /* Primary start */
@@ -112,6 +121,9 @@ body {
   background-size: 300% 300%;
   background-attachment: fixed;
   animation: gradientShift 10s ease infinite;
+  /* Optimizaciones táctiles */
+  touch-action: manipulation; /* Mejorar responsividad táctil */
+  -webkit-tap-highlight-color: transparent; /* Eliminar highlight azul en iOS */
 }
 
 @keyframes gradientShift {
@@ -136,9 +148,15 @@ body::before {
   pointer-events: none;
 }
 
-
-
-#root, main { width: 100%; }
+#root { 
+  width: 100%; 
+  overflow: hidden; /* CRÍTICO: #root nunca debe tener scroll propio */
+  min-height: 100vh; /* Fallback para navegadores antiguos */
+  min-height: 100dvh; /* Altura dinámica del viewport para móvil */
+  /* Optimizaciones para móvil */
+  position: relative; /* Contexto de apilamiento claro */
+  touch-action: pan-y; /* Solo permitir scroll vertical en touch */
+}
 
 /* ===== Tipografía ===== */
 h1, h2, h3, h4, h5, h6 {
@@ -183,9 +201,11 @@ section {
   justify-content: center;
   padding-left: 2rem;
   padding-right: 2rem;
+  padding-top: 2rem;
   padding-bottom: 2rem;
   position: relative;
   overflow-x: hidden;
+  overflow-y: visible;
   box-sizing: border-box;
   background-clip: padding-box;
 }
@@ -199,6 +219,13 @@ section[id] {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Asegurar que el main no tenga overflow conflictivo */
+main { 
+  width: 100%; 
+  overflow-x: hidden;
+  overflow-y: visible; /* Solo el main puede tener scroll natural */
 }
 
 /* ===== Utilidades y helpers ===== */
@@ -505,10 +532,6 @@ body.dark-mode .preloader::before {
   transition: all 0.4s ease;
 }
 
-
-
-
-
 /* Indicador de carga minimalista */
 .preloader-indicator {
   width: 100px;
@@ -533,8 +556,6 @@ body.dark-mode .preloader::before {
   50% { transform: translateX(250%); }
   100% { transform: translateX(-100%); }
 }
-
-
 
 /* ===== Botones Flotantes ===== */
 .theme-toggle, .back-to-top, .lang-btn {
@@ -566,8 +587,6 @@ body.dark-mode .preloader::before {
   bottom: 2rem;
   left: 2rem;
 }
-
-
 
 .back-to-top {
   position: fixed;
@@ -675,8 +694,6 @@ body.dark-mode .back-to-top:hover, body.dark-mode .lang-btn:hover {
   .back-to-top {
     right: 1.5rem;
   }
-  
-
 }
 
 /* ===== Focus Management para menús ===== */
