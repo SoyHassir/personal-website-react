@@ -25,6 +25,7 @@
   border-radius: 50%;
   animation: float 20s ease-in-out infinite;
   z-index: 2;
+  pointer-events: none; /* Evitar interferencia con el scroll */
 }
 
 @keyframes float {
@@ -292,8 +293,9 @@
 
 @media (max-width: 768px) {
   .home {
-    /* Asegurar que no haya desbordamiento horizontal */
+    /* CRÍTICO: Solo ocultar overflow horizontal, mantener efecto visual */
     overflow-x: hidden;
+    overflow-y: visible;
     padding: 1rem;
   }
   
@@ -303,7 +305,7 @@
     text-align: center;
     padding: 2rem;
     border-radius: 24px;
-    /* Asegurar que contenga todos los elementos */
+    /* CRÍTICO: Solo contener overflow del texto, permitir efectos decorativos */
     overflow: visible;
     align-items: center;
     justify-items: center;
@@ -316,6 +318,8 @@
     order: 2;
     text-align: center;
     width: 100%;
+    /* CRÍTICO: Contener el texto */
+    overflow: hidden;
   }
   
   .hero-image {
@@ -346,14 +350,21 @@
     max-width: 100%;
   }
   
+  /* CRÍTICO: Permitir que el texto se ajuste en móvil */
   .hero-text h1 {
     text-align: center;
     width: 100%;
+    white-space: normal; /* Permitir wrap en móvil */
+    overflow: hidden;
+    word-wrap: break-word;
   }
   
   .hero-text h1 .typed {
+    white-space: normal !important; /* Permitir wrap en móvil */
+    word-wrap: break-word;
+    display: inline;
     width: auto;
-    min-width: max-content;
+    max-width: 100%;
   }
   
   .hero-image::before {
@@ -363,12 +374,22 @@
     bottom: -10px;
     opacity: 0.5;
   }
+  
+  /* Mantener elemento decorativo original en móvil */
+  .home::after {
+    width: 150%; /* Restaurar tamaño original */
+    height: 150%; /* Restaurar tamaño original */
+    top: -50%; /* Posición original */
+    right: -25%; /* Posición original */
+    opacity: 0.7; /* Opacidad original */
+  }
 }
 
 @media (max-width: 480px) {
   .home {
     padding: 0.5rem;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Solo ocultar overflow horizontal */
+    overflow-y: visible;
   }
   
   .hero-content {
@@ -378,6 +399,7 @@
     margin: 0;
     max-width: calc(100vw - 1rem);
     width: 100%;
+    overflow: visible; /* Permitir efectos decorativos */
   }
   
   .hero-image picture,
@@ -389,6 +411,9 @@
   
   .hero-text h1 {
     font-size: clamp(2.2rem, 4vw, 3.5rem);
+    white-space: normal; /* Permitir wrap */
+    overflow: hidden;
+    word-wrap: break-word;
   }
   
   .hero-description {
@@ -410,8 +435,11 @@
   }
   
   .hero-text h1 .typed {
+    white-space: normal !important; /* Permitir wrap */
+    word-wrap: break-word;
+    display: inline;
     width: auto;
-    min-width: max-content;
+    max-width: 100%;
   }
   
   .hero-image::before {
@@ -420,5 +448,14 @@
     right: -5px;
     bottom: -5px;
     opacity: 0.4;
+  }
+  
+  /* Mantener efecto visual en pantallas pequeñas */
+  .home::after {
+    width: 130%; /* Buen balance entre efecto visual y rendimiento */
+    height: 130%;
+    top: -40%;
+    right: -20%;
+    opacity: 0.6;
   }
 }

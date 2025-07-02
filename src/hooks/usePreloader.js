@@ -15,7 +15,7 @@ export const usePreloader = () => {
           <div class="preloader-logo">
             <img class="preloader-logo-image" src="./img/optimized-logo/logo-large.webp" alt="Hassir Lastre Logo" />
           </div>
-          <div class="preloader-indicator">
+          <div class="preloader-indicator" role="progressbar" aria-label="Cargando página" aria-live="polite">
             <div class="preloader-progress"></div>
           </div>
         </div>
@@ -26,7 +26,10 @@ export const usePreloader = () => {
 
     // Determinar tiempo mínimo de visualización basado en dispositivo
     const isMobile = window.innerWidth <= 768;
-    const isSlowConnection = navigator.connection && navigator.connection.effectiveType === 'slow-2g';
+    const isSlowConnection = navigator.connection && 
+                           navigator.connection.effectiveType && 
+                           (navigator.connection.effectiveType === 'slow-2g' || 
+                            navigator.connection.effectiveType === '2g');
     
     let minShowTime = 300; // Tiempo base reducido
     if (isMobile) minShowTime = 400; // Menos tiempo en móvil

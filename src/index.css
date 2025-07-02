@@ -682,9 +682,9 @@ body.dark-mode .back-to-top:hover, body.dark-mode .lang-btn:hover {
 @media (max-width: 767px) {
   .theme-toggle, .back-to-top {
     bottom: 1.5rem;
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.4rem;
+    width: 4.2rem;
+    height: 4.2rem;
+    font-size: 2.2rem;
   }
   
   .theme-toggle {
@@ -707,7 +707,7 @@ body.dark-mode .open-menu:focus, body.dark-mode .close-menu:focus {
   box-shadow: 0 0 0 4px rgba(110,142,251,0.2);
 }
 
-/* ===== OCULTAR SCROLL BAR SOLO EN MÓVIL ===== */
+/* ===== CORREGIR SCROLL EN MÓVIL ===== */
 @media (max-width: 768px) {
   /* Para navegadores WebKit (Chrome, Safari móvil) */
   html::-webkit-scrollbar {
@@ -722,8 +722,34 @@ body.dark-mode .open-menu:focus, body.dark-mode .close-menu:focus {
     -ms-overflow-style: none; /* IE/Edge */
   }
   
-  /* Asegurar que el scroll siga funcionando */
-  body, #root {
+  /* CRÍTICO: Solo body debe tener scroll en móvil */
+  html {
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
     -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  }
+  
+  #root {
+    overflow: hidden;
+    height: auto;
+    min-height: 100%;
+  }
+  
+  /* Reducir alturas mínimas en móvil para evitar scroll excesivo */
+  section {
+    min-height: auto;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .home {
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }

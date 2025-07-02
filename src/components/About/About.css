@@ -211,7 +211,8 @@ body.dark-mode .about-description p {
 
 @media (max-width: 768px) {
   #sobre-mi {
-    padding: 6rem 1rem;
+    padding: 4rem 1rem;
+    min-height: auto; /* Eliminar altura forzada en móvil */
   }
   
   .about-container {

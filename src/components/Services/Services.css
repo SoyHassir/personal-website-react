@@ -237,7 +237,8 @@ body.dark-mode .service-description {
 
 @media (max-width: 768px) {
   #servicios {
-    padding: 6rem 1rem;
+    padding: 4rem 1rem;
+    min-height: auto; /* Eliminar altura forzada en móvil */
   }
   
   .services-header {

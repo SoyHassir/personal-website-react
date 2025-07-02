@@ -23,6 +23,11 @@ function App() {
   const { isLoading } = usePreloader();
   const { activeSection } = useActiveSection();
 
+  // Mostrar preloader mientras está cargando
+  if (isLoading) {
+    return null; // El preloader se renderiza directamente en el DOM
+  }
+
   return (
     <LanguageProvider>
       {/* Structured Data para SEO */}

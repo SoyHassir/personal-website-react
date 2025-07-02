@@ -24,6 +24,24 @@
   font-size: 1.2rem;
 }
 
+/* ===== RESPONSIVE - ICONOS MÁS GRANDES EN MÓVIL ===== */
+@media (max-width: 767px) {
+  .theme-toggle svg,
+  .lang-btn svg,
+  .back-to-top svg {
+    width: 2rem; /* Tamaño equilibrado para móvil */
+    height: 2rem;
+    font-size: 2rem;
+  }
+  
+  .open-menu svg,
+  .close-menu svg {
+    width: 1.8rem; /* Para el menú */
+    height: 1.8rem;
+    font-size: 1.8rem;
+  }
+}
+
 /* Iconos en tarjetas de servicios - coordinado con Services.css */
 .service-icon svg {
   width: 2.5rem !important;
