@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist",
+    // Para usar frontend/dist cambiar por: "public": "frontend/dist",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -10,26 +11,6 @@
       {
         "source": "**",
         "destination": "/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**/*.@(js|css|map|webp|avif|png|jpg|jpeg|svg|ico|woff|woff2|ttf|eot)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=31536000"
-          }
-        ]
-      },
-      {
-        "source": "service-worker.js",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache"
-          }
-        ]
       }
     ]
   }

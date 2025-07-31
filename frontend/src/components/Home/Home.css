@@ -1,0 +1,538 @@
+.home {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Fallback para navegadores antiguos */
+  min-height: 100dvh; /* Dynamic Viewport Height - considera barras del navegador */
+  min-height: calc(var(--real-vh, 1vh) * 100); /* Altura real calculada dinámicamente */
+  background: transparent;
+  padding: 2rem;
+  overflow: visible;
+  width: 100%;
+  margin-bottom: 35px;
+}
+
+/* Elementos decorativos modernos */
+.home::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -25%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle at center, 
+    rgba(110, 142, 251, 0.1) 0%, 
+    rgba(167, 119, 227, 0.05) 30%, 
+    transparent 60%);
+  border-radius: 50%;
+  animation: float 20s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none; /* Evitar interferencia con el scroll */
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-20px, -20px) rotate(5deg); }
+  50% { transform: translate(20px, -40px) rotate(-5deg); }
+  75% { transform: translate(-10px, -20px) rotate(3deg); }
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1400px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(var(--glass-blur-medium));
+  border: 1px solid var(--glass-border);
+  border-radius: 32px;
+  padding: 4rem;
+  box-shadow: 
+    0 25px 45px var(--glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: visible;
+  /* Animación inicial para el contenedor */
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Reducido de 0.8s a 0.6s */
+}
+
+/* Activar animación del contenedor cuando el contenido es visible */
+.content-visible .hero-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero-text {
+  color: var(--light-text);
+  /* Remover animación automática para coordinar con el nuevo sistema */
+  /* animation: slideInLeft 1s ease-out; */
+  min-width: 0;
+  overflow: visible;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s; /* Reducido duración y delay */
+}
+
+/* Activar animación cuando el contenido es visible */
+.content-visible .hero-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hero-text h1 {
+  font-size: clamp(1.6rem, 3.5vw, 4rem); /* Reducido más: 26px-64px */
+  font-weight: 100;
+  margin-bottom: 1.5rem;
+  color: var(--light-text);
+  background: none;
+  -webkit-text-fill-color: initial;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  width: 100%;
+  min-height: 1.3em;
+  overflow: visible;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.hero-text h1 .typed {
+  font-weight: 600;
+  background: linear-gradient(135deg, #6e8efb, #a777e3, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 20px rgba(110, 142, 251, 0.3));
+  animation: textGlow 3s ease-in-out infinite alternate;
+  white-space: nowrap !important;
+  display: inline-block;
+  width: auto;
+  min-width: max-content;
+  overflow: visible;
+}
+
+/* Asegurar que el cursor del typed.js no cause problemas */
+.hero-text h1 .typed-cursor {
+  color: rgba(255, 255, 255, 0.8);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes textGlow {
+  from { filter: drop-shadow(0 4px 20px rgba(110, 142, 251, 0.3)); }
+  to { filter: drop-shadow(0 8px 30px rgba(167, 119, 227, 0.5)); }
+}
+
+.hero-description {
+  font-size: clamp(1.4rem, 1.6vw, 1.6rem); /* Consistente con otras secciones */
+  line-height: 1.7;
+  margin: 2rem 0 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 400;
+  max-width: 90%;
+  text-align: left;
+  width: 100%;
+}
+
+
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s; /* Reducido duración y delay */
+}
+
+.content-visible .hero-image {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3, #f093fb);
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-image picture,
+.hero-image img {
+  width: clamp(320px, 28vw, 450px);
+  height: clamp(320px, 28vw, 450px);
+  border-radius: 50%;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  object-fit: cover;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+
+.hero-image:hover img {
+  transform: scale(1.05);
+  box-shadow: 
+    0 35px 80px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  z-index: 100;
+  /* Animación de entrada coordinada */
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+}
+
+/* Activar scroll-down cuando el contenido es visible */
+.content-visible .scroll-down {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.6s ease-out 0.8s, transform 0.6s ease-out 0.8s; /* Transición simple */
+  animation: bounce 2s infinite 1.4s; /* Solo bounce después de aparecer */
+}
+
+/* Efecto glassmorphism al hover - igual que otros botones */
+.scroll-down::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.scroll-down:hover::before {
+  left: 100%;
+}
+
+.scroll-down:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.scroll-down:active {
+  transform: translateX(-50%) translateY(-1px);
+}
+
+/* Dark mode igual que otros botones */
+body.dark-mode .scroll-down {
+  background: rgba(45, 55, 72, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .scroll-down:hover {
+  background: rgba(45, 55, 72, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive moderno */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 3rem;
+  }
+  
+  /* Optimización para tablets */
+  .hero-text h1 {
+    font-size: clamp(1.7rem, 3.4vw, 3.4rem); /* Reducido más: 27px-54px */
+    line-height: 1.1;
+  }
+}
+
+/* Mobile styles - nuevos estilos para scroll-down */
+@media (max-width: 768px) {
+  .scroll-down {
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    animation: mobileBounce 2s infinite;
+    margin-bottom: 1rem;
+  }
+
+  .scroll-down:hover {
+    transform: translateX(-50%) translateY(-6px);
+  }
+
+  .scroll-down:active {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+/* Para pantallas muy alargadas como Samsung S22+ */
+@media (max-width: 768px) and (min-height: 800px) {
+  .scroll-down {
+    bottom: 3rem;
+  }
+}
+
+/* Para pantallas móviles pequeñas - mantener scroll-down visible */
+@media (max-width: 480px) {
+  .scroll-down {
+    bottom: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.8rem;
+    margin-bottom: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    /* CRÍTICO: Solo ocultar overflow horizontal, mantener efecto visual */
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 1rem;
+    /* Altura dinámica para pantallas alargadas (Samsung, iPhone Pro Max, etc.) */
+    min-height: 100vh;
+    margin-bottom: 0; /* Quitar margin-bottom en móvil */
+    min-height: 100dvh;
+    width: 100%; /* Asegurar ancho completo */
+    max-width: 100vw; /* Evitar que exceda el viewport */
+    box-sizing: border-box; /* Asegurar que padding no cause overflow */
+  }
+  
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 24px;
+    /* CRÍTICO: Solo contener overflow del texto, permitir efectos decorativos */
+    overflow: visible;
+    align-items: center;
+    justify-items: center;
+    /* Asegurar que no exceda el ancho del viewport */
+    max-width: calc(100vw - 2rem);
+    width: 100%;
+    box-sizing: border-box; /* Asegurar que padding no cause overflow */
+  }
+  
+  .hero-text {
+    order: 2;
+    text-align: center;
+    width: 100%;
+    /* CRÍTICO: Contener el texto */
+    overflow: hidden;
+  }
+  
+  .hero-image {
+    order: 1;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-image picture,
+  .hero-image img {
+    width: clamp(250px, 60vw, 320px);
+    height: clamp(250px, 60vw, 320px);
+    max-width: calc(100vw - 6rem);
+    box-sizing: border-box; /* Asegurar que border no cause overflow */
+  }
+  
+  .hero-description {
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* CRÍTICO: Permitir que el texto se ajuste en móvil */
+  .hero-text h1 {
+    font-size: clamp(2.5rem, 3.5vw, 3.2rem); /* Tamaño moderado para typewriter: 40px-51px */
+    text-align: center;
+    width: 100%;
+    white-space: normal; /* Permitir wrap en móvil */
+    overflow: hidden;
+    word-wrap: break-word;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  
+  .hero-text h1 .typed {
+    white-space: normal !important; /* Permitir wrap en móvil */
+    word-wrap: break-word;
+    display: inline;
+    width: auto;
+    max-width: 100%;
+  }
+  
+  .hero-image::before {
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    opacity: 0.4;
+  }
+  
+  /* Ajustar elemento decorativo para evitar scroll horizontal en móvil */
+  .home::after {
+    width: 120%; /* Reducir tamaño para evitar overflow */
+    height: 120%; /* Reducir tamaño para evitar overflow */
+    top: -30%; /* Ajustar posición */
+    right: -10%; /* Ajustar posición para evitar overflow */
+    opacity: 0.5; /* Reducir opacidad */
+  }
+}
+
+/* Pantallas alargadas como Samsung S22+, iPhone 14 Pro Max, etc. */
+@media (max-width: 480px) and (min-height: 800px) {
+  .home {
+    padding: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+    /* Optimizar para pantallas alargadas */
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    padding: 0.5rem;
+    overflow-x: hidden; /* Solo ocultar overflow horizontal */
+    overflow-y: visible;
+  }
+  
+  /* Ajustar elemento decorativo para pantallas muy pequeñas */
+  .home::after {
+    width: 100%; /* Tamaño que no exceda el contenedor */
+    height: 100%; /* Tamaño que no exceda el contenedor */
+    top: -20%; /* Posición más conservadora */
+    right: 0%; /* Sin desplazamiento hacia la derecha */
+    opacity: 0.3; /* Opacidad muy baja */
+  }
+  
+  .hero-content {
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin: 0;
+    max-width: calc(100vw - 2rem); /* Asegurar margen de seguridad */
+    width: 100%;
+    overflow: visible; /* Permitir efectos decorativos */
+    box-sizing: border-box; /* Asegurar que padding no cause overflow */
+  }
+  
+  .hero-image picture,
+  .hero-image img {
+    width: clamp(200px, 50vw, 280px);
+    height: clamp(200px, 50vw, 280px);
+    max-width: calc(100vw - 4rem);
+    box-sizing: border-box; /* Asegurar que border no cause overflow */
+  }
+  
+  .hero-text h1 {
+    font-size: clamp(2rem, 3vw, 2.8rem); /* Tamaño moderado para typewriter: 32px-45px */
+    white-space: normal; /* Permitir wrap */
+    overflow: hidden;
+    word-wrap: break-word;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+  
+  .hero-description {
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 1.5rem 0 0 0;
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem); /* Consistente con otras secciones */
+  }
+}
+
+/* Pantallas ultra-anchas - Reducido aún más */
+@media (min-width: 1400px) {
+  .hero-text h1 {
+    font-size: clamp(2.6rem, 4vw, 4.8rem); /* Reducido más: 42px-77px */
+    letter-spacing: -0.03em;
+  }
+  
+  .hero-description {
+    font-size: clamp(1.4rem, 1.6vw, 1.6rem); /* Consistente con otras secciones */
+  }
+}
+
+/* Animaciones para el scroll indicator */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+/* Animación específica para móvil con más movimiento */
+@keyframes mobileBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-12px);
+  }
+}

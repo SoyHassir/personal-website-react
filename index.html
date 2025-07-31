@@ -17,6 +17,9 @@
     <link rel="canonical" href="https://hassirlastre.com/" />
     <link rel="alternate" hreflang="es" href="https://hassirlastre.com/" />
     <link rel="alternate" hreflang="x-default" href="https://hassirlastre.com/" />
+    
+    <!-- Font Awesome CDN - Fallback para producción -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Hassir Lastre Sierra | Consultor Estratégico en Datos e Innovación">
@@ -36,12 +39,16 @@
     <meta name="twitter:image" content="https://hassirlastre.com/img/optimized-profile/profile-large.avif">
     <meta name="twitter:site" content="@SoyHassir">
 
-    <!-- Preconnect -->
+    <!-- Preconnect optimizado -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    
+    <!-- Carga optimizada de fuentes sin problemas de CORS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap"></noscript>
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="./img/favicon-new.svg?v=2024" />
@@ -56,13 +63,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="manifest" href="./site.webmanifest" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Raleway:wght@300&display=swap" rel="stylesheet">
     <!-- Font Awesome ahora se carga con tree shaking desde JavaScript -->
+    <script type="module" crossorigin src="assets/index-DF2zf-FL.js"></script>
+    <link rel="modulepreload" crossorigin href="assets/index-7zLYVN21.js">
+    <link rel="stylesheet" crossorigin href="assets/index-Be4NJEjE.css">
   </head>
   <body>
     <div id="root"></div>
 
-    <script type="module" src="/src/main.jsx"></script>
+
 
   </body>
 </html>

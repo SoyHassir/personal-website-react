@@ -1,0 +1,1417 @@
+@import-normalize;
+/* ============================
+   Variables globales del sitio
+   ============================ */
+:root {
+  /* Gradientes */
+  --primary-gradient: linear-gradient(135deg, #6e8efb, #a777e3);
+  --secondary-gradient: linear-gradient(135deg, #8e2de2, #4a00e0);
+  --accent-gradient: linear-gradient(135deg, #11998e, #38ef7d);
+  --dark-gradient: linear-gradient(135deg, #2b5876, #4e4376);
+  
+  /* Colores */
+  --primary-color: #6e8efb;
+  --primary-rgb: 110, 142, 251;
+  --primary-color-transparent-light: rgba(110, 142, 251, 0.05);
+  --secondary-color: #a777e3;
+  --text-color: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --light-text: #f7fafc;
+  --bg-color: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  
+  /* Efectos glass estandarizados */
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.08);
+  --glass-bg-emphasis: rgba(255, 255, 255, 0.15);
+  --glass-blur-small: 10px;
+  --glass-blur-medium: 15px;
+  --glass-blur-large: 20px;
+  
+  /* Tipografía */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Raleway', sans-serif;
+  
+  /* Layout */
+  --border-radius: 12px;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+  --navbar-height: 6rem;
+  
+  /* Breakpoints */
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1200px;
+  
+  /* Z-index */
+  --z-header: 1000;
+  --z-modal: 2000;
+  --z-tooltip: 10000;
+}
+
+/* Dark mode variables */
+html.dark-mode {
+  --text-color: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --card-bg: rgba(45, 55, 72, 0.3);
+  --glass-bg: rgba(45, 55, 72, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.3);
+  --glass-bg-subtle: rgba(45, 55, 72, 0.15);
+  --glass-bg-emphasis: rgba(45, 55, 72, 0.25);
+}
+
+/* Dark mode body background */
+html.dark-mode body {
+  background: linear-gradient(135deg, 
+    #0f172a 0%, 
+    #1e1b3c 25%, 
+    #2d1b42 50%, 
+    #1e1b3c 75%, 
+    #1a1625 100%) !important;
+  background-size: 300% 300% !important;
+  background-attachment: fixed !important;
+  animation: gradientShift 10s ease infinite !important;
+}
+
+html.dark-mode body::before {
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.9) 0%, 
+    rgba(30, 27, 60, 0.8) 50%, 
+    rgba(15, 23, 42, 0.9) 100%) !important;
+}
+/* ===== Font Display Swap ===== */
+@font-face {
+  font-family: 'Poppins';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+}
+
+/* ===== Reset y base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all var(--transition-speed) ease;
+}
+
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: calc(var(--navbar-height) + 2rem);
+  font-size: 62.5%;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto; /* Solo el HTML maneja todo el scroll */
+  scrollbar-gutter: stable; /* Reservar espacio para barra de scroll */
+  /* Optimizaciones para móvil */
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS Safari */
+  overscroll-behavior: contain; /* Evitar scroll elástico - EXCELENTE en Android */
+  scroll-snap-type: none; /* Asegurar scroll libre en ambas plataformas */
+}
+
+body { 
+  scroll-behavior: smooth !important;
+  font-family: var(--font-body);
+  font-size: 1.8rem;
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+  overflow-y: hidden; /* Evitar que el body tenga su propio scroll */
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh; 
+  min-height: 100dvh; /* Mejor soporte para móvil - Dynamic Viewport Height */
+  /* Fondo global único y continuo - primary/secondary con auxiliares armónicos */
+  background: linear-gradient(135deg, 
+    #6e8efb 0%,        /* Primary start */
+    #9bb5fc 14%,       /* Primary start lighter */
+    #a777e3 28%,       /* Primary end */
+    #c599eb 42%,       /* Primary end lighter */
+    #8e2de2 56%,       /* Secondary start */
+    #5a1a9e 70%,       /* Secondary start darker */
+    #4a00e0 84%,       /* Secondary end */
+    #6e8efb 100%);
+  background-size: 300% 300%;
+  background-attachment: fixed;
+  animation: gradientShift 10s ease infinite;
+  /* Optimizaciones táctiles */
+  touch-action: manipulation; /* Mejorar responsividad táctil */
+  -webkit-tap-highlight-color: transparent; /* Eliminar highlight azul en iOS */
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Overlay global para legibilidad */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(26, 32, 65, 0.85) 0%, 
+    rgba(40, 53, 97, 0.75) 50%, 
+    rgba(26, 32, 65, 0.85) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+#root { 
+  width: 100%; 
+  overflow: hidden; /* CRÍTICO: #root nunca debe tener scroll propio */
+  min-height: 100vh; /* Fallback para navegadores antiguos */
+  min-height: 100dvh; /* Altura dinámica del viewport para móvil */
+  /* Optimizaciones para móvil */
+  position: relative; /* Contexto de apilamiento claro */
+  touch-action: pan-y; /* Solo permitir scroll vertical en touch */
+}
+
+/* ===== Tipografía ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h1 { font-size: clamp(3.6rem, 5vw, 5rem); margin-bottom: 3rem; }
+h2 { font-size: clamp(3rem, 4vw, 4rem); text-align: center; }
+h3 { font-size: clamp(2rem, 2.5vw, 2.5rem); margin: 1.5rem 0 1rem; }
+h4 { font-size: clamp(1.8rem, 2vw, 2rem); margin: 1rem 0 2rem; }
+h5 { font-size: clamp(1.6rem, 1.8vw, 1.8rem); margin-bottom: 1.2rem; }
+h6 { font-size: clamp(1.4rem, 1.6vw, 1.6rem); margin-bottom: 1rem; }
+
+p {
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.7rem, 1.8vw, 1.8rem);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Layout ===== */
+section {
+  /* min-height: 100vh; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  box-sizing: border-box;
+  background-clip: padding-box;
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--navbar-height) + 2rem);
+  border-top: 1px solid transparent;
+}
+
+/* Eliminar completamente padding y margin solo de las secciones del home */
+.home #sobre-mi,
+.home #servicios,
+.home #contacto {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Espaciado correcto para páginas individuales */
+.about-page #sobre-mi,
+.services-page #servicios,
+.contact-page .contact {
+  margin-top: 2rem !important;
+  padding-top: 0rem !important;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Asegurar que el main no tenga overflow conflictivo */
+main { 
+  width: 100%; 
+  overflow: visible;
+  min-height: auto;
+  display: block;
+  /* Eliminar cualquier propiedad que pueda crear contexto de scroll */
+}
+
+/* ===== Utilidades y helpers ===== */
+.hide {
+  display: none !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.mt-2 { margin-top: 2rem !important; }
+.mb-2 { margin-bottom: 2rem !important; }
+.pt-2 { padding-top: 2rem !important; }
+.pb-2 { padding-bottom: 2rem !important; }
+
+/* ===== Botones ===== */
+.btn {
+  display: inline-block;
+  padding: clamp(1rem, 1.5vw, 1.2rem) clamp(2rem, 3vw, 3rem);
+  background: var(--primary-gradient);
+  color: var(--light-text);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 1.8vw, 1.8rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+  margin: 0 auto 2rem;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--secondary-color);
+  box-shadow: 0 0 0 4px rgba(167,119,227,0.2);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(110, 142, 251, 0.6);
+}
+
+.btn-secondary {
+  background: var(--secondary-gradient);
+  box-shadow: 0 5px 15px rgba(167, 119, 227, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: var(--primary-gradient);
+  color: var(--light-text);
+  border-color: transparent;
+}
+
+.btn-small {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1.6rem;
+  font-size: 1.08rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(110, 142, 251, 0.10);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.btn-small:hover, .btn-small:focus {
+  background: linear-gradient(135deg, #5a7ff0, #9666df);
+  box-shadow: 0 4px 16px rgba(110, 142, 251, 0.15);
+  transform: translateY(-1px) scale(1.03);
+  outline: none;
+}
+
+/* ===== Formularios ===== */
+input:invalid, select:invalid, textarea:invalid {
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 1px #e53e3e;
+}
+
+input:valid, select:valid, textarea:valid {
+  border-color: #38a169;
+  box-shadow: 0 0 0 1px #38a169;
+}
+
+input:disabled, select:disabled, textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-message {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  font-weight: 500;
+}
+
+.form-message.error {
+  background: rgba(229, 62, 62, 0.1);
+  color: #e53e3e;
+  border: 1px solid rgba(229, 62, 62, 0.3);
+}
+
+.form-message.success {
+  background: rgba(56, 161, 105, 0.1);
+  color: #38a169;
+  border: 1px solid rgba(56, 161, 105, 0.3);
+}
+
+/* ===== Animaciones mejoradas ===== */
+.fade-in, .slide-in-left, .slide-in-right, .zoom-in {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in { 
+  transform: translateY(30px);
+}
+
+.slide-in-left { 
+  transform: translateX(-50px);
+}
+
+.slide-in-right { 
+  transform: translateX(50px);
+}
+
+.zoom-in { 
+  transform: scale(0.8);
+}
+
+/* Solo activar cuando el contenido principal es visible */
+.content-visible .fade-in.visible,
+.content-visible .slide-in-left.visible,
+.content-visible .slide-in-right.visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+.content-visible .zoom-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Animaciones escalonadas para componentes que se cargan después */
+.content-visible .fade-in {
+  animation: contentFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Dark Mode Styles ===== */
+body.dark-mode {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+body.dark-mode #sobre-mi {
+  background: transparent !important;
+}
+
+body.dark-mode #servicios {
+  background: transparent !important;
+}
+
+body.dark-mode #contacto {
+  background: transparent !important;
+}
+
+body.dark-mode #sobre-mi h2,
+body.dark-mode #servicios h2,
+body.dark-mode #contacto h2 {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark-mode #sobre-mi .about-container {
+  color: var(--text-color);
+}
+
+body.dark-mode .card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+}
+
+body.dark-mode .email {
+  background: var(--glass-bg);
+}
+
+body.dark-mode .email a {
+  color: var(--light-text);
+}
+
+body.dark-mode .menu a {
+  color: #f0f0f0;
+}
+
+body.dark-mode .contact-info-container {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+body.dark-mode .social-icons {
+  background: var(--glass-bg);
+}
+
+body.dark-mode .preloader {
+  background: linear-gradient(135deg, 
+    #0f172a 0%, 
+    #1e1b3c 25%, 
+    #2d1b42 50%, 
+    #1e1b3c 75%, 
+    #1a1625 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+}
+
+body.dark-mode .preloader::before {
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.9) 0%, 
+    rgba(30, 27, 60, 0.8) 50%, 
+    rgba(15, 23, 42, 0.9) 100%);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 767px) {
+  .container {
+    width: 95%;
+  }
+  
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Preloader Moderno ===== */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Mismo fondo gradiente que el sitio - primary/secondary con auxiliares armónicos */
+  background: linear-gradient(135deg, 
+    #6e8efb 0%,        /* Primary start */
+    #9bb5fc 14%,       /* Primary start lighter */
+    #a777e3 28%,       /* Primary end */
+    #c599eb 42%,       /* Primary end lighter */
+    #8e2de2 56%,       /* Secondary start */
+    #5a1a9e 70%,       /* Secondary start darker */
+    #4a00e0 84%,       /* Secondary end */
+    #6e8efb 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+/* Overlay para consistencia visual */
+.preloader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(26, 32, 65, 0.85) 0%, 
+    rgba(40, 53, 97, 0.75) 50%, 
+    rgba(26, 32, 65, 0.85) 100%);
+  z-index: -1;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Container elegante para logo */
+.preloader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  animation: containerFadeIn 1s ease-out;
+}
+
+@keyframes containerFadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Logo principal */
+.preloader-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-logo-image {
+  width: clamp(150px, 25vw, 250px);
+  height: auto;
+  filter: drop-shadow(0 15px 35px rgba(110, 142, 251, 0.4));
+  transition: all 0.4s ease;
+}
+
+/* Indicador de carga minimalista */
+.preloader-indicator {
+  width: 100px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.preloader-progress {
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, #6e8efb, #a777e3, #f093fb);
+  border-radius: 2px;
+  animation: progressMove 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(110, 142, 251, 0.6);
+}
+
+@keyframes progressMove {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(250%); }
+  100% { transform: translateX(-100%); }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ===== Estilos específicos del selector de idioma ===== */
+
+/* Versión desktop */
+.desktop-lang-selector {
+  display: block;
+  position: relative;
+}
+
+
+
+/* Versión móvil */
+.mobile-lang-selector {
+  display: none;
+  position: relative;
+}
+
+/* Asegurar que el contenedor del selector de idioma tenga posición relativa en móvil */
+@media (max-width: 1024px) {
+  .mobile-lang-selector {
+    position: relative !important;
+  }
+}
+
+
+
+/* Ocultar versión desktop en móvil */
+@media (max-width: 1024px) {
+  .desktop-lang-selector {
+    display: none !important;
+  }
+  
+  .mobile-lang-selector {
+    display: block;
+  }
+}
+
+/* Indicador de idioma en móvil */
+.mobile-lang-indicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 12px;
+  width: 24px;
+  height: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(110, 142, 251, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Texto del idioma en el botón activo */
+.lang-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  line-height: 1;
+}
+
+/* Estado activo del botón de idioma */
+.lang-btn.active {
+  background: none;
+  border: none;
+  color: white;
+  box-shadow: 0 4px 16px rgba(110, 142, 251, 0.3);
+  transform: scale(1.02);
+  position: relative;
+  overflow: hidden;
+}
+
+/* En desktop, el botón activo no debe cambiar de tamaño */
+@media (min-width: 1025px) {
+  .lang-btn.active {
+    transform: none !important;
+  }
+}
+
+.lang-btn.active::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Menú desplegable de idiomas */
+.lang-menu-glass {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  margin-left: 0.5rem;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 140px;
+  animation: fadeInGlass 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Asegurar centrado perfecto */
+  margin-top: -1px;
+}
+
+.lang-menu-glass.open {
+  display: flex;
+}
+
+.lang-option {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.lang-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.lang-option.active {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  font-weight: 600;
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+  user-select: none;
+}
+
+/* Menú más sólido en móvil */
+@media (max-width: 1024px) {
+  .lang-menu-glass {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  
+  .lang-option {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.95);
+  }
+  
+  .lang-option:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+  }
+}
+
+/* Modo oscuro para menú de idioma */
+body.dark-mode .lang-menu-glass {
+  background: rgba(45, 55, 72, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .lang-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+body.dark-mode .lang-option.active {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+}
+
+body.dark-mode .lang-btn.active {
+  background: none;
+  border: none;
+  color: white;
+  box-shadow: 0 4px 16px rgba(110, 142, 251, 0.3);
+  transform: scale(1.02);
+  position: relative;
+  overflow: hidden;
+}
+
+/* En desktop, el botón de idioma en modo oscuro tampoco debe cambiar de tamaño */
+@media (min-width: 1025px) {
+  body.dark-mode .lang-btn.active {
+    transform: none !important;
+  }
+}
+
+body.dark-mode .lang-btn.active::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Modo oscuro para móvil - menús más sólidos */
+@media (max-width: 1024px) {
+  body.dark-mode .lang-menu-glass {
+    background: rgba(45, 55, 72, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  body.dark-mode .lang-option {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.95);
+  }
+  
+  body.dark-mode .lang-option:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+}
+
+/* Responsive adjustments */
+
+
+
+
+/* ===== Focus Management para menús ===== */
+.open-menu:focus, .close-menu:focus {
+  outline: 3px solid var(--secondary-color);
+  box-shadow: 0 0 0 4px rgba(167,119,227,0.2);
+}
+
+body.dark-mode .open-menu:focus, body.dark-mode .close-menu:focus {
+  outline: 3px solid var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(110,142,251,0.2);
+}
+
+/* ===== CORREGIR SCROLL EN MÓVIL ===== */
+@media (max-width: 768px) {
+  /* Para navegadores WebKit (Chrome, Safari móvil) */
+  html::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    background: transparent;
+  }
+  
+  /* Para Firefox móvil */
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  
+  /* CRÍTICO: HTML debe manejar scroll en móvil también */
+  html {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  }
+  
+  body {
+    overflow-x: hidden;
+    overflow-y: visible;
+    height: 100%;
+  }
+  
+  #root {
+    overflow: hidden;
+    height: auto;
+    min-height: 100%;
+  }
+  
+  /* Reducir alturas mínimas en móvil para evitar scroll excesivo */
+  section {
+    min-height: auto;
+  }
+  
+  .home {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+/* ===== Menú glassmorphism para Herramientas ===== */
+.tools-menu-glass {
+  position: absolute;
+  top: 50%;
+  left: 5rem;
+  transform: translateY(-50%);
+  min-width: 130px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+  padding: 0.5rem 0;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  animation: fadeInGlassTools 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* En desktop, el menú de herramientas debe permanecer estático y unificar el color de fondo */
+@media (min-width: 1025px) {
+  .tools-menu-glass {
+    position: absolute !important;
+    top: 50% !important;
+    left: 4.5rem !important;
+    transform: translateY(-50%) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.2) !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+}
+
+/* Ajuste específico para móvil - menú estático y más sólido */
+@media (max-width: 1024px) {
+  .tools-switcher .tools-menu-glass {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 6.5rem !important;
+    left: 1.5rem !important;
+    transform: none !important;
+    min-width: 160px;
+    z-index: 10002;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: none !important;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    padding: 0.3rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-switcher .tools-menu-glass {
+    left: 1rem !important;
+    bottom: 6.2rem !important;
+  }
+}
+
+.tools-menu-item {
+  color: rgba(255,255,255,0.98);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+.tools-menu-item:hover, .tools-menu-item:focus {
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  outline: none;
+}
+
+@keyframes fadeInGlass {
+  from { 
+    opacity: 0; 
+    transform: translateY(-50%) translateX(-15px);
+    filter: blur(2px);
+  }
+  to   { 
+    opacity: 1; 
+    transform: translateY(-50%) translateX(0);
+    filter: blur(0);
+  }
+}
+
+/* Animaciones elegantes para el menú de herramientas */
+@keyframes fadeInGlassTools {
+  0% { 
+    opacity: 0; 
+    transform: translateY(-50%) translateX(-20px) scale(0.95);
+    filter: blur(3px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-50%) translateX(-5px) scale(0.98);
+    filter: blur(1px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(-50%) translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes toolsMenuSlideOut {
+  0% { 
+    opacity: 1; 
+    transform: translateY(-50%) translateX(0) scale(1);
+    filter: blur(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-50%) translateX(-5px) scale(0.98);
+    filter: blur(1px);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-50%) translateX(-20px) scale(0.95);
+    filter: blur(3px);
+  }
+}
+
+body.dark-mode .tools-menu-glass {
+  background: rgba(45, 55, 72, 0.4);
+  border-color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.98);
+}
+
+body.dark-mode .tools-menu-item:hover, body.dark-mode .tools-menu-item:focus {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+
+
+
+
+
+
+/* ===== Transiciones suaves para modo claro/oscuro ===== */
+html {
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+body {
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Transiciones para elementos principales */
+* {
+  transition: background-color 0.5s ease, 
+              color 0.5s ease, 
+              border-color 0.5s ease, 
+              box-shadow 0.5s ease;
+}
+
+/* Transiciones específicas para elementos clave */
+.topheader,
+.menu {
+  transition: background 0.5s ease, 
+              color 0.5s ease, 
+              border-color 0.5s ease, 
+              box-shadow 0.5s ease,
+              backdrop-filter 0.5s ease;
+}
+
+/* Transiciones para elementos de texto */
+h1, h2, h3, h4, h5, h6, p, a, span, div {
+  transition: color 0.5s ease;
+}
+
+/* Transiciones para botones y elementos interactivos */
+.btn, button, input, textarea, select {
+  transition: background-color 0.5s ease, 
+              color 0.5s ease, 
+              border-color 0.5s ease, 
+              box-shadow 0.5s ease,
+              transform 0.3s ease;
+}
+
+/* Transiciones para elementos con glassmorphism */
+[class*="glass"], 
+[class*="Glass"] {
+  transition: background 0.5s ease, 
+              backdrop-filter 0.5s ease, 
+              border-color 0.5s ease, 
+              box-shadow 0.5s ease;
+}
+
+
+
+/* Transiciones para animaciones específicas */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Asegurar que las transiciones no interfieran con animaciones críticas */
+.preloader,
+.preloader * {
+  transition: none !important;
+}
+
+/* ===== Optimizaciones para HD y pantallas de alta resolución ===== */
+
+/* Mejoras para pantallas Retina y HD */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Mejorar la nitidez de bordes */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Mejorar glassmorphism en HD - más sutil */
+  .topheader,
+  .menu {
+    backdrop-filter: blur(15px) saturate(150%);
+    -webkit-backdrop-filter: blur(15px) saturate(150%);
+  }
+  
+
+  
+  /* Mejorar sombras en HD - más sutiles */
+  .topheader.solid,
+  .menu {
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.1),
+      0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+
+  
+  /* Mejorar gradientes en HD */
+  .menu a.selected {
+    background: linear-gradient(135deg, #6e8efb 0%, #a777e3 50%, #6e8efb 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+  
+  /* Efectos hover más sutiles */
+  .menu a:hover {
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.2),
+      0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Optimizaciones para pantallas 4K y ultra HD */
+@media (min-width: 2560px) {
+  /* Aumentar tamaños de fuente para mejor legibilidad */
+  html {
+    font-size: 18px;
+  }
+  
+  /* Mejorar espaciado en pantallas grandes */
+  .container {
+    max-width: 1600px;
+  }
+  
+
+}
+
+/* Mejoras para imágenes en HD */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+  }
+  
+  /* Mejorar logos y elementos gráficos */
+  .logo img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Mejorar iconos SVG */
+  svg {
+    shape-rendering: geometricPrecision;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Mejorar iconos FontAwesome */
+  .fa, .fas, .far, .fal, .fab {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Optimizaciones para pantallas de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+  /* Mejorar aún más la nitidez */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Mejorar glassmorphism para pantallas súper HD - más sutil */
+  .topheader,
+  .menu {
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+  }
+  
+
+  
+  /* Mejorar imágenes para pantallas súper HD */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Mejoras generales de calidad visual */
+@media (min-width: 1920px) {
+  /* Mejorar contraste y legibilidad */
+  body {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  
+  /* Mejorar espaciado de texto */
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  
+  /* Mejorar botones */
+  .btn {
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* ===== Transiciones suaves para cambio de idioma ===== */
+/* Prevenir saltos visuales al cambiar idioma */
+body {
+  transition: background 0.5s ease, color 0.5s ease;
+  overflow-x: hidden; /* Prevenir scroll horizontal durante transiciones */
+}
+
+/* Transiciones para elementos que cambian con el idioma */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, label {
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Transiciones específicas para elementos de navegación */
+.nav-links a,
+.menu a,
+.btn {
+  transition: color 0.3s ease, 
+              background-color 0.3s ease, 
+              border-color 0.3s ease,
+              opacity 0.3s ease;
+}
+
+/* Prevenir reflow durante cambios de idioma */
+.container,
+section,
+main {
+  transition: none; /* Evitar transiciones en contenedores principales */
+}
+
+/* Transiciones suaves para elementos que cambian de texto */
+[data-i18n],
+.translation-content {
+  transition: opacity 0.2s ease;
+}
+
+/* Prevenir saltos en elementos críticos */
+.topheader,
+.floating-buttons-container,
+.fixed-elements {
+  transition: background 0.5s ease, 
+              color 0.5s ease, 
+              border-color 0.5s ease, 
+              box-shadow 0.5s ease;
+}
+
+/* Optimización para cambios de idioma */
+@media (prefers-reduced-motion: no-preference) {
+  /* Transiciones más suaves para usuarios que no prefieren movimiento reducido */
+  body {
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p, span, div, a, button, label {
+    transition: color 0.25s ease, opacity 0.25s ease;
+  }
+}
+
+/* Transición suave durante cambio de idioma */
+body.language-changing {
+  transition: all 0.3s ease;
+}
+
+body.language-changing * {
+  transition: color 0.2s ease, opacity 0.2s ease !important;
+}
+
+/* Prevenir saltos durante cambio de idioma */
+body.language-changing .topheader,
+body.language-changing .floating-buttons-container,
+body.language-changing .fixed-elements {
+  transition: none !important;
+}
+
+/* Suavizar transiciones de texto */
+body.language-changing h1,
+body.language-changing h2,
+body.language-changing h3,
+body.language-changing h4,
+body.language-changing h5,
+body.language-changing h6,
+body.language-changing p,
+body.language-changing span,
+body.language-changing div,
+body.language-changing a,
+body.language-changing button,
+body.language-changing label {
+  transition: color 0.15s ease, opacity 0.15s ease !important;
+}
+
+/* ===== Screen Reader Only ===== */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
+  background: transparent !important;
+  display: none !important;
+}

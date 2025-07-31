@@ -1,0 +1,958 @@
+/* Estilos compartidos para todas las páginas */
+
+.page-section {
+  padding: 120px 0 80px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.page-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.page-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: 2px;
+}
+
+.page-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Grids compartidos */
+.blog-grid,
+.portfolio-grid {
+  display: grid;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.blog-grid {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.portfolio-grid {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+/* Cards compartidas */
+.blog-card,
+.portfolio-card {
+  background: var(--card-background);
+  border-radius: 16px;
+  padding: 0;
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.blog-card:hover,
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-large);
+}
+
+/* Blog Cards */
+.blog-card {
+  padding: 30px;
+}
+
+.blog-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.blog-category {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.blog-date {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.blog-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.blog-excerpt {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.blog-read-more {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.blog-read-more:hover {
+  color: var(--secondary-color);
+}
+
+.blog-read-more::after {
+  content: '→';
+  transition: transform 0.3s ease;
+}
+
+.blog-read-more:hover::after {
+  transform: translateX(4px);
+}
+
+/* Portfolio Cards */
+.portfolio-image {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.portfolio-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-image img {
+  transform: scale(1.05);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.portfolio-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.portfolio-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.1);
+}
+
+.portfolio-content {
+  padding: 30px;
+}
+
+.portfolio-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+}
+
+.portfolio-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.portfolio-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  background: var(--background-secondary);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-section {
+    padding: 100px 0 60px;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .blog-grid,
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .blog-card,
+  .portfolio-content {
+    padding: 20px;
+  }
+  
+  .blog-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* Animación de entrada suave para páginas */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos para páginas individuales */
+.about-page,
+.services-page,
+.contact-page {
+  min-height: calc(100vh - 80px); /* Restar el padding-top para evitar altura excesiva */
+  padding-top: 80px; /* Espacio para el header fijo */
+  background: var(--background-gradient);
+  animation: backgroundAnimation 20s ease-in-out infinite, pageFadeIn 0.8s ease-out;
+  overflow: visible; /* No crear contexto de scroll propio */
+  width: 100%;
+  display: block;
+}
+
+/* Asegurar que las páginas individuales tengan el mismo fondo que el home */
+.about-page section,
+.services-page section,
+.contact-page section {
+  background: transparent;
+}
+
+/* Ajustar el espaciado de las secciones en páginas individuales */
+.about-page .about-container,
+.services-page .services-header,
+.contact-page .contact-container {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* Animación escalonada para contenido de páginas */
+@keyframes contentSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Asegurar que las animaciones funcionen correctamente en páginas individuales */
+.about-page .about-content,
+.about-page .about-image-container,
+.services-page .service-card,
+.contact-page .contact-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  animation: contentSlideIn 0.8s ease-out 0.3s both;
+}
+
+.about-page .about-content.visible,
+.about-page .about-image-container.visible,
+.services-page .service-card.visible,
+.contact-page .contact-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilos específicos para páginas individuales de servicios */
+.services-page #servicios {
+  min-height: unset !important;
+  padding-top: 0 !important;
+}
+
+/* Padding específico para escritorio */
+@media (min-width: 1025px) {
+  .services-page #servicios {
+    padding: 0rem 2rem;
+  }
+}
+
+.services-page .services-header {
+  text-align: center;
+  margin-bottom: 0 !important;
+  max-width: 800px;
+  animation: fadeInUp 1s ease-out, contentSlideIn 0.8s ease-out 0.1s both;
+  position: relative;
+  z-index: 10;
+}
+
+.services-page .services-header h2 {
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #6e8efb, #a777e3, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.services-page .services-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #6e8efb, #a777e3);
+  border-radius: 2px;
+}
+
+.services-page .services-subtitle {
+  font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-top: 2rem;
+}
+
+.services-page .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1300px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+/* Estilos específicos para páginas individuales de contacto */
+.contact-page .contact-header {
+  text-align: center;
+  margin-bottom: 6rem;
+  animation: fadeInUp 1s ease-out, contentSlideIn 0.8s ease-out 0.1s both;
+}
+
+.contact-page .contact-header h2 {
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #6e8efb, #a777e3, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.contact-page .contact-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #6e8efb, #a777e3);
+  border-radius: 2px;
+}
+
+.contact-page .contact-subtitle {
+  font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-top: 1.5rem;
+}
+
+.contact-page .contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  padding: 0;
+}
+
+/* Estilos para las tarjetas de servicios en páginas individuales */
+.services-page .service-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.services-page .service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services-page .service-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.services-page .service-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 
+    0 15px 30px rgba(110, 142, 251, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.services-page .service-icon i,
+.services-page .service-icon svg {
+  font-size: 2.5rem;
+  color: white;
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.services-page .service-title {
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.services-page .service-description {
+  font-size: clamp(1.3rem, 1.5vw, 1.5rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Estilos para elementos de contacto en páginas individuales */
+.contact-page .contact-info h3 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  color: var(--text-color);
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+.contact-page .info-item {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-page .info-item:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2rem;
+}
+
+.contact-page .info-item strong {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contact-page .info-item p {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+}
+
+.contact-page .info-item p a {
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.contact-page .info-item p a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6e8efb, #a777e3);
+  transition: width 0.3s ease;
+}
+
+.contact-page .info-item p a:hover::after {
+  width: 100%;
+}
+
+.contact-page .info-item p a:hover {
+  color: var(--secondary-color) !important;
+}
+
+.contact-page .social-networks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.contact-page .social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  text-decoration: none;
+}
+
+.contact-page .social-link .social-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.contact-page .social-link .social-icon svg {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.contact-page .social-link span {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.contact-page .social-link:hover span {
+  color: var(--text-color);
+}
+
+.contact-page .contact-form-wrapper h3 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  color: var(--text-color);
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+.contact-page .contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Consistente con Contact.css */
+}
+
+.contact-page .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; /* Consistente con Contact.css */
+}
+
+.contact-page .contact-form input,
+.contact-page .contact-form textarea {
+  width: 100%;
+  padding: 1.2rem 1.5rem; /* Consistente con Contact.css */
+  background: rgba(255,255,255,0.05) !important; /* Consistente con Contact.css */
+  color: var(--text-color) !important;
+  border: 2px solid rgba(255,255,255,0.1) !important; /* Consistente con Contact.css */
+  border-radius: 12px; /* Consistente con Contact.css */
+  font-size: 1.3rem; /* Consistente con Contact.css */
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.contact-page .contact-form input:focus,
+.contact-page .contact-form textarea:focus {
+  outline: none;
+  border-color: rgba(110, 142, 251, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(110, 142, 251, 0.1);
+}
+
+.contact-page .contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Responsive design para páginas individuales */
+@media (max-width: 768px) {
+  
+  .about-page .about-container,
+  .services-page .services-header,
+  .contact-page .contact-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .services-page #servicios {
+    padding: 4rem 1rem;
+  }
+  
+  .contact-page .contact {
+    padding: 4rem 1rem;
+  }
+  
+  .contact-page .contact-container {
+    padding: 2rem;
+  }
+  
+  .contact-page .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .services-page .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contact-page .social-networks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Estilos para modo oscuro en páginas individuales */
+body.dark-mode .services-page .service-card {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .contact-page .contact-container {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .contact-page .contact-form input,
+body.dark-mode .contact-page .contact-form textarea {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+}
+
+body.dark-mode .contact-page .contact-form input::placeholder,
+body.dark-mode .contact-page .contact-form textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Corrige el min-height solo en la página dedicada de Sobre Mí */
+.about-page #sobre-mi {
+  min-height: unset !important;
+  padding-top: 0 !important;
+}
+
+/* === ESTILOS UNIFICADOS PARA SERVICIOS (Home y Página) === */
+#servicios,
+.services-page #servicios {
+  position: relative;
+  min-height: unset;
+  padding: 8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Padding específico para escritorio */
+@media (min-width: 1025px) {
+  #servicios,
+  .services-page #servicios {
+    padding: 0rem 2rem 0rem 2rem !important;
+  }
+}
+
+#servicios .services-header,
+.services-page .services-header {
+  text-align: center;
+  margin-bottom: 6rem;
+  max-width: 800px;
+  animation: fadeInUp 1s ease-out;
+  position: relative;
+  z-index: 10;
+}
+
+#servicios .services-header h2,
+.services-page .services-header h2 {
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #6e8efb, #a777e3, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+#servicios .services-header h2::after,
+.services-page .services-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #6e8efb, #a777e3);
+  border-radius: 2px;
+}
+
+#servicios .services-subtitle,
+.services-page .services-subtitle {
+  font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-top: 2rem;
+}
+
+#servicios .services-grid,
+.services-page .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1300px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+#servicios .service-card,
+.services-page .service-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+#servicios .service-card.visible,
+.services-page .service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#servicios .service-card:hover,
+.services-page .service-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+#servicios .service-icon,
+.services-page .service-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 
+    0 15px 30px rgba(110, 142, 251, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+#servicios .service-icon i,
+#servicios .service-icon svg,
+.services-page .service-icon i,
+.services-page .service-icon svg {
+  font-size: 2.5rem;
+  color: white;
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+#servicios .service-title,
+.services-page .service-title {
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+#servicios .service-card:hover .service-title,
+.services-page .service-card:hover .service-title {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#servicios .service-description,
+.services-page .service-description {
+  font-size: clamp(1.3rem, 1.5vw, 1.5rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Responsive para ambas vistas */
+@media (max-width: 768px) {
+  #servicios,
+  .services-page #servicios {
+    padding: 4rem 1rem;
+  }
+  #servicios .services-header,
+  .services-page .services-header {
+    margin-bottom: 3rem;
+  }
+  #servicios .services-grid,
+  .services-page .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* === ESTILOS UNIFICADOS PARA CONTACTO (Home y Página) === */
+.contact-content,
+.contact-page .contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .contact-content,
+  .contact-page .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.contact-info,
+.contact-page .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-form-wrapper,
+.contact-page .contact-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+} 
