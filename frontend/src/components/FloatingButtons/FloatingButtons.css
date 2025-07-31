@@ -143,6 +143,53 @@ body.dark-mode .floating-buttons-container button.lang-btn-active:hover {
   transform: scale(1.05);
 }
 
+/* Estilos para botón de idioma deshabilitado en floating buttons */
+.floating-buttons-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: none;
+}
+
+.floating-buttons-container button:disabled:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: none;
+}
+
+.floating-buttons-container button:disabled::before {
+  display: none;
+}
+
+/* Dark mode para botón deshabilitado en floating buttons */
+body.dark-mode .floating-buttons-container button:disabled {
+  background: rgba(45, 55, 72, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .floating-buttons-container button:disabled:hover {
+  background: rgba(45, 55, 72, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
 /* Estilos para el menú de herramientas */
 .floating-buttons-container [role="menu"] {
   min-width: 130px;

@@ -223,6 +223,53 @@ body.dark-mode .desktop-controls .lang-btn:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+/* Estilos para botón de idioma deshabilitado en desktop */
+.desktop-controls .lang-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: none;
+}
+
+.desktop-controls .lang-btn:disabled:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: none;
+}
+
+.desktop-controls .lang-btn:disabled::before {
+  display: none;
+}
+
+/* Dark mode para botón de idioma deshabilitado en desktop */
+body.dark-mode .desktop-controls .lang-btn:disabled {
+  background: rgba(45, 55, 72, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .desktop-controls .lang-btn:disabled:hover {
+  background: rgba(45, 55, 72, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
 /* Estilos para ToolsButton en desktop-controls */
 .desktop-controls button {
   width: 3.5rem;
@@ -1029,6 +1076,25 @@ body.dark-mode .close-menu:hover {
     transform: none !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
+
+  /* Estilos para botón de idioma deshabilitado en móvil */
+  .menu.menu_opened .mobile-controls .lang-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .menu.menu_opened .mobile-controls .lang-btn:disabled:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: none !important;
+  }
   
   /* Ocultar menú de idioma en móvil dentro del burger */
   .menu.menu_opened .mobile-controls .lang-menu-glass {
@@ -1113,6 +1179,25 @@ body.dark-mode .close-menu:hover {
     color: white;
     border-color: transparent;
     box-shadow: 0 4px 16px rgba(110, 142, 251, 0.25);
+  }
+
+  /* Estilos para botón de idioma deshabilitado en modo oscuro móvil */
+  body.dark-mode .menu.menu_opened .mobile-controls .lang-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: rgba(45, 55, 72, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  body.dark-mode .menu.menu_opened .mobile-controls .lang-btn:disabled:hover {
+    background: rgba(45, 55, 72, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: none !important;
   }
   
   /* Contenedor del botón de idioma con indicador */
