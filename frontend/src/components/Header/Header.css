@@ -756,7 +756,7 @@ body.dark-mode .desktop-controls [role="menu"] [role="menuitem"]:focus {
 @keyframes slideInMenu {
   0% {
     opacity: 0;
-    transform: translateX(60px);
+    transform: translateX(100%);
   }
   100% {
     opacity: 1;
@@ -770,7 +770,7 @@ body.dark-mode .desktop-controls [role="menu"] [role="menuitem"]:focus {
   }
   100% {
     opacity: 0;
-    transform: translateX(60px);
+    transform: translateX(100%);
   }
 }
 
@@ -1238,12 +1238,12 @@ body.dark-mode .close-menu:hover {
 @keyframes menuSlideIn {
   0% { 
     opacity: 0; 
-    transform: translateY(-50%) translateX(20px) scale(0.95);
+    transform: translateY(-50%) translateX(100%) scale(0.95);
     filter: blur(3px);
   }
   50% {
     opacity: 0.8;
-    transform: translateY(-50%) translateX(5px) scale(0.98);
+    transform: translateY(-50%) translateX(30%) scale(0.98);
     filter: blur(1px);
   }
   100% { 
@@ -1261,12 +1261,12 @@ body.dark-mode .close-menu:hover {
   }
   50% {
     opacity: 0.8;
-    transform: translateY(-50%) translateX(5px) scale(0.98);
+    transform: translateY(-50%) translateX(30%) scale(0.98);
     filter: blur(1px);
   }
   100% { 
     opacity: 0; 
-    transform: translateY(-50%) translateX(20px) scale(0.95);
+    transform: translateY(-50%) translateX(100%) scale(0.95);
     filter: blur(3px);
   }
 }

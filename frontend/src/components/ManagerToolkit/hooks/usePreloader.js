@@ -32,7 +32,7 @@ export const usePreloader = () => {
                             navigator.connection.effectiveType === '2g');
     
     let minShowTime = 1200; // Tiempo base aumentado para apreciar la animación
-    if (isMobile) minShowTime = 1000; // Tiempo óptimo en móvil
+    if (isMobile) minShowTime = 2000; // Tiempo aumentado a 2 segundos en móvil
     if (isSlowConnection) minShowTime = 1500; // Más tiempo en conexiones lentas
     
     const startTime = performance.now();

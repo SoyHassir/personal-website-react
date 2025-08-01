@@ -15,6 +15,10 @@ const Header = ({ headerVisible = true }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuClosing, setIsMenuClosing] = useState(false);
   
+  // Referencias para el menú
+  const menuRef = React.useRef(null);
+  const headerRef = React.useRef(null);
+  
   // Hooks para tema e idioma
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   
@@ -78,6 +82,23 @@ const Header = ({ headerVisible = true }) => {
     }
   };
 
+
+
+  // Efecto para manejar el scroll del body cuando el menú está abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Prevenir scroll del body cuando el menú está abierto
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Restaurar scroll del body cuando el menú se cierra
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   // Función para manejar clics en navegación
   const handleNavClick = (sectionId) => {
     setIsMenuClosing(true);
@@ -105,10 +126,17 @@ const Header = ({ headerVisible = true }) => {
 
   return (
     <>
-      {/* Overlay para efecto focus - igual que en modal */}
+      {/* Overlay para efecto focus y cerrar menú al hacer clic */}
       {isMenuOpen && (
         <div 
           className="menu-overlay"
+          onClick={() => {
+            setIsMenuClosing(true);
+            setTimeout(() => {
+              setIsMenuOpen(false);
+              setIsMenuClosing(false);
+            }, 320);
+          }}
           style={{
             position: 'fixed',
             inset: 0,
@@ -119,12 +147,12 @@ const Header = ({ headerVisible = true }) => {
               ? 'blur(8px)' 
               : 'blur(6px)',
             zIndex: 999,
-            pointerEvents: 'none'
+            cursor: 'pointer'
           }}
         />
       )}
       
-      <header className={`topheader ${isSolid ? 'solid' : ''} ${headerVisible ? 'header-visible' : ''}`}>
+      <header ref={headerRef} className={`topheader ${isSolid ? 'solid' : ''} ${headerVisible ? 'header-visible' : ''}`}>
         <nav className="topnav" id="navigation">
           {/* Logo */}
           <Link to="/" className="logo">
@@ -208,6 +236,7 @@ const Header = ({ headerVisible = true }) => {
         
         {/* Menú móvil */}
         <ul 
+          ref={menuRef}
           id="main-navigation-menu"
           className={`menu${isMenuOpen ? ' menu_opened' : ''}${isMenuClosing ? ' menu_closing' : ''}`}
           role="menu"
